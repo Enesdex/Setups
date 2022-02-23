@@ -1,3 +1,3 @@
 # Setups
 
-- Setting up enviroments for VulnResearch
+- Vulnerability Research Scripts
