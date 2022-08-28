@@ -165,9 +165,9 @@ echo 'binfmt_misc /proc/sys/fs/binfmt_misc binfmt_misc defaults 0 0' | sudo tee 
 echo -en "127.0.0.1\tlocalhost\n" | sudo tee $DIR/etc/hosts
 echo "nameserver 8.8.8.8" | sudo tee -a $DIR/etc/resolve.conf
 echo "syzkaller" | sudo tee $DIR/etc/hostname
-ssh-keygen -f $RELEASE.id_rsa -t rsa -N ''
+ssh-keygen -f stretch.id_rsa -t rsa -N ''
 sudo mkdir -p $DIR/root/.ssh/
-cat $RELEASE.id_rsa.pub | sudo tee $DIR/root/.ssh/authorized_keys
+cat stretch.id_rsa.pub | sudo tee $DIR/root/.ssh/authorized_keys
 
 # Add perf support
 if [ $PERF = "true" ]; then
@@ -184,9 +184,9 @@ fi
 echo 'ATTR{name}=="vim2m", SYMLINK+="vim2m"' | sudo tee -a $DIR/etc/udev/rules.d/50-udev-default.rules
 
 # Build a disk image
-dd if=/dev/zero of=$RELEASE.img bs=1M seek=$SEEK count=1
-sudo mkfs.ext4 -F $RELEASE.img
+dd if=/dev/zero of=stretch.img bs=1M seek=$SEEK count=1
+sudo mkfs.ext4 -F stretch.img
 sudo mkdir -p /mnt/$DIR
-sudo mount -o loop $RELEASE.img /mnt/$DIR
+sudo mount -o loop stretch.img /mnt/$DIR
 sudo cp -a $DIR/. /mnt/$DIR/.
 sudo umount /mnt/$DIR
