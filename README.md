@@ -1,3 +1,0 @@
-# Setups
-
-- Vulnerability Research Scripts
